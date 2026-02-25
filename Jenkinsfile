@@ -24,7 +24,15 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm ci'
+                script {
+                    if (fileExists('package-lock.json')) {
+                        echo "package-lock.json found → using npm ci"
+                        bat 'npm ci'
+                    } else {
+                        echo "No lock file found → using npm install"
+                        bat 'npm install'
+                    }
+                }
             }
         }
 
