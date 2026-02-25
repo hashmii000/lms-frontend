@@ -11,7 +11,7 @@ pipeline {
     }
 
     environment {
-        NODE_ENV = "test"
+        NODE_ENV = "production"
     }
 
     stages {
@@ -47,43 +47,25 @@ pipeline {
             }
         }
 
-        stage('Security Audit') {
+        stage('Build Application') {
             steps {
-                script {
-                    try {
-                        bat 'npm audit --audit-level=high'
-                    } catch (Exception e) {
-                        echo 'Vulnerabilities found — continuing CI'
-                    }
-                }
+                bat 'npm run build'
             }
         }
 
-        stage('Build Validation (Optional)') {
+        stage('Build Validation') {
             steps {
-                script {
-                    try {
-                        bat 'npm run build'
-                    } catch (Exception e) {
-                        echo 'No build script found — skipping build'
-                    }
-                }
-            }
-        }
-
-        stage('Smoke Test') {
-            steps {
-                echo 'Backend CI validation completed'
+                echo 'Frontend build completed successfully'
             }
         }
     }
 
     post {
         success {
-            echo '✔ Backend CI SUCCESS'
+            echo '✔ Frontend CI SUCCESS'
         }
         failure {
-            echo '❌ Backend CI FAILED'
+            echo '❌ Frontend CI FAILED'
         }
         always {
             cleanWs()
