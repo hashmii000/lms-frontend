@@ -27,10 +27,10 @@ pipeline {
                 script {
                     if (fileExists('package-lock.json')) {
                         echo "package-lock.json found → using npm ci"
-                        bat 'npm ci'
+                        bat 'npm ci --include=dev'
                     } else {
                         echo "No lock file found → using npm install"
-                        bat 'npm install'
+                        bat 'npm install --include=dev'
                     }
                 }
             }
