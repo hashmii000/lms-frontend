@@ -68,7 +68,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.3",
+    "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -79,6 +79,6 @@
     "prettier": "3.3.3",
     "sass": "^1.81.0",
     "tailwindcss": "^4.1.12",
-    "vite": "^5.4.11"
+    "vite": "^7.3.1"
   }
 }
